@@ -68,7 +68,7 @@ CREATE TABLE suli.Diak(
 	CONSTRAINT Diak_Telefonszam_CHK	CHECK (REGEXP_LIKE(Telefonszam,'^\+\d{6,}$')),
 	CONSTRAINT Diak_Szintfelmero_CHK	CHECK (REGEXP_LIKE(Szintfelmero,'^[ABC][12][\+\-]*$')),
 	CONSTRAINT Diak_Jelenlegi_szint_CHK	CHECK (REGEXP_LIKE(Jelenlegi_szint,'^[ABC][12][\+\-]*$')),
-	CONSTRAINT Diak_PK	PRIMARY KEY(Diak_ID)
+	CONSTRAINT Diak_PK	PRIMARY KEY (Diak_ID)
 );
 
 CREATE TABLE suli.Tanar(
@@ -80,7 +80,7 @@ CREATE TABLE suli.Tanar(
 	CONSTRAINT Tanar_Telefonszam_CHK	CHECK (REGEXP_LIKE(Telefonszam,'^\+\d{6,}$')),
 	CONSTRAINT Tanar_Adoszam_UK	UNIQUE (Adoszam),
 	CONSTRAINT Tanar_Adoszam_CHK	CHECK (REGEXP_LIKE(Adoszam,'^\d{8}-\d-\d{2}$|^\d{10}$|^[A-Z]{2}\w{8,12}$')),
-	CONSTRAINT Tanar_PK	PRIMARY KEY(Tanar_ID)
+	CONSTRAINT Tanar_PK	PRIMARY KEY (Tanar_ID)
 );
 
 CREATE TABLE suli.Ora(
@@ -91,8 +91,8 @@ CREATE TABLE suli.Ora(
 	Ar	NUMBER(6)	NOT NULL,
 	Tanar_ID	NUMBER(20)	NOT NULL,
 	CONSTRAINT Ora_Szint_CHK	CHECK (REGEXP_LIKE(Szint,'^[ABC][12][\+\-]*$')),
-	CONSTRAINT Ora_PK	PRIMARY KEY(Ora_ID),
-	CONSTRAINT Tanar_FK	FOREIGN KEY(Tanar_ID) REFERENCES suli.Tanar(Tanar_ID)
+	CONSTRAINT Ora_PK	PRIMARY KEY (Ora_ID),
+	CONSTRAINT Tanar_FK	FOREIGN KEY (Tanar_ID) REFERENCES suli.Tanar(Tanar_ID)
 );
 
 CREATE TABLE suli.Szamla(
@@ -101,9 +101,9 @@ CREATE TABLE suli.Szamla(
 	Fizetes_ip	TIMESTAMP WITH TIME ZONE,
 	Diak_ID	NUMBER(20)	NOT NULL,
 	Ora_ID	NUMBER(20)	NOT NULL,
-	CONSTRAINT Szamla_PK	PRIMARY KEY(Szamla_ID),
-	CONSTRAINT Diak_FK	FOREIGN KEY(Diak_ID) REFERENCES suli.Diak(Diak_ID),
-	CONSTRAINT Ora_FK	FOREIGN KEY(Ora_ID) REFERENCES suli.Ora(Ora_ID)
+	CONSTRAINT Szamla_PK	PRIMARY KEY (Szamla_ID),
+	CONSTRAINT Diak_FK	FOREIGN KEY (Diak_ID) REFERENCES suli.Diak(Diak_ID),
+	CONSTRAINT Ora_FK	FOREIGN KEY (Ora_ID) REFERENCES suli.Ora(Ora_ID)
 );
 
 -- 5/B: Tablak feltoltese adatokkal
