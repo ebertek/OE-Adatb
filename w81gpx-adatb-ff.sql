@@ -52,7 +52,7 @@ CREATE SEQUENCE suli.Ora_SEQ
 CREATE SEQUENCE suli.Szamla_SEQ
 	MINVALUE 1
 	MAXVALUE 1000
-	START WITH 10
+	START WITH 1
 	INCREMENT BY 1
 	CACHE 30;
 
@@ -65,9 +65,9 @@ CREATE TABLE suli.Diak(
 	Telefonszam	VARCHAR2(25),
 	Szintfelmero	VARCHAR2(3),
 	Jelenlegi_szint	VARCHAR2(3),
-	CONSTRAINT Diak_Telefonszam_CHK CHECK (REGEXP_LIKE(Telefonszam,'^\+\d{6,}$')),
-	CONSTRAINT Diak_Szintfelmero_CHK CHECK (REGEXP_LIKE(Szintfelmero,'^[ABC][12][\+\-]*$')),
-	CONSTRAINT Diak_Jelenlegi_szint_CHK CHECK (REGEXP_LIKE(Jelenlegi_szint,'^[ABC][12][\+\-]*$')),
+	CONSTRAINT Diak_Telefonszam_CHK	CHECK (REGEXP_LIKE(Telefonszam,'^\+\d{6,}$')),
+	CONSTRAINT Diak_Szintfelmero_CHK	CHECK (REGEXP_LIKE(Szintfelmero,'^[ABC][12][\+\-]*$')),
+	CONSTRAINT Diak_Jelenlegi_szint_CHK	CHECK (REGEXP_LIKE(Jelenlegi_szint,'^[ABC][12][\+\-]*$')),
 	CONSTRAINT Diak_PK	PRIMARY KEY(Diak_ID)
 );
 
@@ -77,9 +77,9 @@ CREATE TABLE suli.Tanar(
 	Cim	VARCHAR2(70)	NOT NULL,
 	Telefonszam	VARCHAR2(25),
 	Adoszam	VARCHAR2(14)	NOT NULL,
-	CONSTRAINT Tanar_Telefonszam_CHK CHECK (REGEXP_LIKE(Telefonszam,'^\+\d{6,}$')),
-	CONSTRAINT Tanar_Adoszam_UK UNIQUE (Adoszam),
-	CONSTRAINT Tanar_Adoszam_CHK CHECK (REGEXP_LIKE(Adoszam,'^\d{8}-\d-\d{2}$|^\d{10}$|^[A-Z]{2}\w{8,12}$')),
+	CONSTRAINT Tanar_Telefonszam_CHK	CHECK (REGEXP_LIKE(Telefonszam,'^\+\d{6,}$')),
+	CONSTRAINT Tanar_Adoszam_UK	UNIQUE (Adoszam),
+	CONSTRAINT Tanar_Adoszam_CHK	CHECK (REGEXP_LIKE(Adoszam,'^\d{8}-\d-\d{2}$|^\d{10}$|^[A-Z]{2}\w{8,12}$')),
 	CONSTRAINT Tanar_PK	PRIMARY KEY(Tanar_ID)
 );
 
@@ -90,7 +90,7 @@ CREATE TABLE suli.Ora(
 	Tematika	VARCHAR2(255),
 	Ar	NUMBER(6)	NOT NULL,
 	Tanar_ID	NUMBER(20)	NOT NULL,
-	CONSTRAINT Ora_Szint_CHK CHECK (REGEXP_LIKE(Szint,'^[ABC][12][\+\-]*$')),
+	CONSTRAINT Ora_Szint_CHK	CHECK (REGEXP_LIKE(Szint,'^[ABC][12][\+\-]*$')),
 	CONSTRAINT Ora_PK	PRIMARY KEY(Ora_ID),
 	CONSTRAINT Tanar_FK	FOREIGN KEY(Tanar_ID) REFERENCES suli.Tanar(Tanar_ID)
 );
