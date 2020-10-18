@@ -107,7 +107,7 @@ CREATE TABLE suli.Szamla(
 );
 
 -- 5/B: Tablak feltoltese adatokkal
--- A kezdeti ertekeknel nem hasznaljuk a suli.xxx_SEQ.NEXTVAL-t, hogy az Orak tablat is biztosan jol tudjuk feltolteni
+-- A Diak es Tanar tablaknal a kezdeti adatoknal nem hasznaljuk a suli.xxx_SEQ.NEXTVAL-t, hogy az Ora es Szamla tablakat is biztosan jol tudjuk feltolteni
 
 INSERT INTO suli.Diak
 	VALUES(1,'Angol András','1034 Budapest, Bécsi út 104-108. 1. szoba','+36302646526','A1','B1');
@@ -309,7 +309,7 @@ INSERT INTO suli.Szamla
 INSERT INTO suli.Szamla
 	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-11-02 08:00:00 +1:00',NULL,12,19);
 
--- 5/C: Tablak kilistazaza
+-- 5/C: Tablak kilistazasa
 SELECT * FROM suli.Diak;
 SELECT * FROM suli.Tanar;
 SELECT * FROM suli.Ora;
