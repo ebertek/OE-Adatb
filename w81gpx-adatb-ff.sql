@@ -335,7 +335,24 @@ SELECT Idopont, Tematika, Ar
 	ORDER BY Ar DESC;
 
 -- 6/B: Csoportosito lekerdezesek: GROUP BY, HAVING
-
+-- 1: Kulonbozo szinten levo diakok megszamlalasa, ezek kozul azon szintek kilistazasa, amin legalabb 2 diak van
+SELECT Jelenlegi_szint, COUNT(Jelenlegi_szint) AS "Diakok szama"
+	FROM suli.Diak
+	GROUP BY Jelenlegi_szint
+	HAVING COUNT(Jelenlegi_szint) >= 2
+	ORDER BY Jelenlegi_szint DESC;
+-- 2: A legolcsobb es legdragabb arak szintenkent csoportositva, ha nem ugyanannyiba kerul az osszes adott szintu ora
+SELECT Szint, MIN(Ar), MAX(Ar)
+	FROM suli.Ora
+	GROUP BY Szint
+	HAVING MIN(Ar) <> MAX(Ar)
+	ORDER BY Szint ASC;
+-- 3: A kulonbozo tanarok altal tartott orak arainak atlaga
+SELECT Tanar_ID, AVG(Ar)
+	FROM suli.Ora
+	GROUP BY Tanar_ID
+	HAVING AVG(Ar) > 1
+	ORDER BY AVG(Ar) DESC;
 
 -- 6/C: Tobbtablas lekerdezesek: INNER JOIN, OUTER JOIN
 
