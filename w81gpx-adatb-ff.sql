@@ -239,7 +239,7 @@ INSERT INTO suli.Szamla
 INSERT INTO suli.Szamla
 	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-10-26 08:00:00 +1:00',TIMESTAMP '2020-10-30 10:09:00 +1:00',10,6);
 INSERT INTO suli.Szamla
-	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-10-26 08:00:00 +1:00',TIMESTAMP '2020-10-30 13:51:00 +1:00',11,7);
+	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-10-26 08:00:00 +1:00',NULL,11,7);
 INSERT INTO suli.Szamla
 	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-10-26 08:00:00 +1:00',TIMESTAMP '2020-10-29 12:44:00 +1:00',12,7);
 INSERT INTO suli.Szamla
@@ -360,10 +360,22 @@ SELECT suli.Tanar.VezetekNev||' '||suli.Tanar.UtoNev AS "Nev", SUM(suli.Ora.Ar)
 	FROM suli.Szamla
 	INNER JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
 	INNER JOIN suli.Tanar ON(suli.Ora.Tanar_ID = suli.Tanar.Tanar_ID)
-	WHERE Fizetes_ip IS NOT NULL
+	WHERE suli.Szamla.Fizetes_ip IS NOT NULL
 	GROUP BY suli.Ora.Tanar_ID, suli.Tanar.VezetekNev||' '||suli.Tanar.UtoNev
 	ORDER BY SUM(suli.Ora.Ar) DESC;
--- 2: 
-
--- 6/D: Fuggvenyek: MIN/MAX/SUM/AVG/COUNT, NVL/SUBSTR/LENGTH/UPPER/LOWER/TO_DATE/TO_CHAR
-
+-- 2: Kubai Karoly koronas lett, melyik orakon vett reszt?
+SELECT suli.Tanar.VezetekNev||' '||suli.Tanar.UtoNev AS "Tanar neve", suli.Ora.Ora_ID, suli.Ora.Idopont
+	FROM suli.Szamla
+	JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
+	JOIN suli.Tanar ON(suli.Ora.Tanar_ID = suli.Tanar.Tanar_ID)
+	JOIN suli.Diak ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
+	WHERE suli.Diak.Diak_ID = 11;
+-- 3: A 2002. okt. 27. elott kiallitott, de nem kifizetett szamlakhoz tartozo nevek es osszegek
+SELECT suli.Diak.VezetekNev||' '||suli.Diak.UtoNev AS "Tartozo neve", suli.Ora.Ar
+	FROM suli.Szamla
+	JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
+	JOIN suli.Diak ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
+	WHERE suli.Ora.Ar > 1
+	AND suli.Szamla.Fizetes_ip IS NULL
+	AND suli.szamla.Kiallitas_ip < TO_TIMESTAMP_TZ('2020-10-27 00:00:00 +1:00', 'YYYY-MM-DD HH24:MI:SS TZH:TZM')
+	ORDER BY suli.Szamla.Kiallitas_ip ASC;
