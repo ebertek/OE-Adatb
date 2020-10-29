@@ -316,3 +316,29 @@ SELECT * FROM suli.Diak;
 SELECT * FROM suli.Tanar;
 SELECT * FROM suli.Ora;
 SELECT * FROM suli.Szamla;
+
+-- 6/A: Egyszeru lekerdezesek: WHERE, ORDER BY
+-- 1: Kezdo szintu diakok nevei
+SELECT VezetekNev||' '||UtoNev AS "Nev"
+	FROM suli.Diak
+	WHERE Jelenlegi_szint LIKE UPPER('A%')
+	ORDER BY VezetekNev ASC;
+-- 2: Budapesti tanarok nevei es telefonszamai
+SELECT VezetekNev||' '||UtoNev AS "Nev", Telefonszam
+	FROM suli.Tanar
+	WHERE Cim LIKE LOWER('%budapest%')
+	ORDER BY VezetekNev ASC;
+-- 3: Kozepszintu orak idopontjai, tematikaja es arai
+SELECT Idopont, Tematika, Ar
+	FROM suli.Ora
+	WHERE Szint LIKE UPPER('B%')
+	ORDER BY Ar DESC;
+
+-- 6/B: Csoportosito lekerdezesek: GROUP BY, HAVING
+
+
+-- 6/C: Tobbtablas lekerdezesek: INNER JOIN, OUTER JOIN
+
+
+-- 6/D: Fuggvenyek: MIN/MAX/SUM/AVG/COUNT, NVL/SUBSTR/LENGTH/UPPER/LOWER/TO_DATE/TO_CHAR
+
