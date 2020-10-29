@@ -321,17 +321,17 @@ SELECT * FROM suli.Szamla;
 -- 1: Kezdo szintu diakok nevei
 SELECT VezetekNev||' '||UtoNev AS "Nev"
 	FROM suli.Diak
-	WHERE Jelenlegi_szint LIKE UPPER('A%')
+	WHERE UPPER(Jelenlegi_szint) LIKE UPPER('A_%')
 	ORDER BY VezetekNev ASC;
 -- 2: Budapesti tanarok nevei es telefonszamai
 SELECT VezetekNev||' '||UtoNev AS "Nev", Telefonszam
 	FROM suli.Tanar
-	WHERE Cim LIKE LOWER('%budapest%')
+	WHERE LOWER(Cim) LIKE LOWER('%budapest%')
 	ORDER BY VezetekNev ASC;
 -- 3: Kozepszintu orak idopontjai, tematikaja es arai
 SELECT Idopont, Tematika, Ar
 	FROM suli.Ora
-	WHERE Szint LIKE UPPER('B%')
+	WHERE UPPER(Szint) LIKE UPPER('B_%')
 	ORDER BY Ar DESC;
 
 -- 6/B: Csoportosito lekerdezesek: GROUP BY, HAVING
