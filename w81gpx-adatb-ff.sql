@@ -60,7 +60,8 @@ CREATE SEQUENCE suli.Szamla_SEQ
 
 CREATE TABLE suli.Diak(
 	Diak_ID	NUMBER(20)	NOT NULL,
-	Nev	VARCHAR2(70)	NOT NULL,
+	VezetekNev	VARCHAR2(70)	NOT NULL,
+	UtoNev	VARCHAR2(70)	NOT NULL,
 	Cim	VARCHAR2(70),
 	Telefonszam	VARCHAR2(25),
 	Szintfelmero	VARCHAR2(3),
@@ -73,7 +74,8 @@ CREATE TABLE suli.Diak(
 
 CREATE TABLE suli.Tanar(
 	Tanar_ID	NUMBER(20)	NOT NULL,
-	Nev	VARCHAR2(70)	NOT NULL,
+	VezetekNev	VARCHAR2(70)	NOT NULL,
+	UtoNev	VARCHAR2(70)	NOT NULL,
 	Cim	VARCHAR2(70)	NOT NULL,
 	Telefonszam	VARCHAR2(25),
 	Adoszam	VARCHAR2(14)	NOT NULL,
@@ -110,48 +112,48 @@ CREATE TABLE suli.Szamla(
 -- A Diak es Tanar tablaknal a kezdeti adatoknal nem hasznaljuk a suli.xxx_SEQ.NEXTVAL-t, hogy az Ora es Szamla tablakat is biztosan jol tudjuk feltolteni
 
 INSERT INTO suli.Diak
-	VALUES(1,'Angol András','1034 Budapest, Bécsi út 104-108. 1. szoba','+36302646526','A1','B1');
+	VALUES(1,'Angol', 'András','1034 Budapest, Bécsi út 104-108. 1. szoba','+36302646526','A1','B1');
 INSERT INTO suli.Diak
-	VALUES(2,'Brit Béla','1034 Budapest, Bécsi út 104-108. 2. szoba','+36302748235','B2+','C1');
+	VALUES(2,'Brit', 'Béla','1034 Budapest, Bécsi út 104-108. 2. szoba','+36302748235','B2+','C1');
 INSERT INTO suli.Diak
-	VALUES(3,'Cseh Csilla','1034 Budapest, Bécsi út 104-108. 3. szoba','+36302734274','A1','A2');
+	VALUES(3,'Cseh', 'Csilla','1034 Budapest, Bécsi út 104-108. 3. szoba','+36302734274','A1','A2');
 INSERT INTO suli.Diak
-	VALUES(4,'Dán Dániel','1034 Budapest, Bécsi út 104-108. 4. szoba','+36303263264','A2','A2+');
+	VALUES(4,'Dán', 'Dániel','1034 Budapest, Bécsi út 104-108. 4. szoba','+36303263264','A2','A2+');
 INSERT INTO suli.Diak
-	VALUES(5,'Észt Eszter','1034 Budapest, Bécsi út 104-108. 5. szoba','+36303798379','B1','B1');
+	VALUES(5,'Észt', 'Eszter','1034 Budapest, Bécsi út 104-108. 5. szoba','+36303798379','B1','B1');
 INSERT INTO suli.Diak
-	VALUES(6,'Finn Fruzsina','1034 Budapest, Bécsi út 104-108. 6. szoba','+36302646526','B2-','C1');
+	VALUES(6,'Finn', 'Fruzsina','1034 Budapest, Bécsi út 104-108. 6. szoba','+36302646526','B2-','C1');
 INSERT INTO suli.Diak
-	VALUES(7,'Grúz Gábor','1034 Budapest, Bécsi út 104-108. 7. szoba','+36304789422','B1','A2');
+	VALUES(7,'Grúz', 'Gábor','1034 Budapest, Bécsi út 104-108. 7. szoba','+36304789422','B1','A2');
 INSERT INTO suli.Diak
-	VALUES(8,'Holland Hedvig','1034 Budapest, Bécsi út 104-108. 8. szoba','+36304655263','B1+','B2');
+	VALUES(8,'Holland', 'Hedvig','1034 Budapest, Bécsi út 104-108. 8. szoba','+36304655263','B1+','B2');
 INSERT INTO suli.Diak
-	VALUES(9,'Izraeli Ibolya','1034 Budapest, Bécsi út 104-108. 9. szoba','+36304972354','A1','A2');
+	VALUES(9,'Izraeli', 'Ibolya','1034 Budapest, Bécsi út 104-108. 9. szoba','+36304972354','A1','A2');
 INSERT INTO suli.Diak
-	VALUES(10,'Jamaicai János','1034 Budapest, Bécsi út 104-108. 10. szoba','+36305262422','B1-','C2');
+	VALUES(10,'Jamaicai', 'János','1034 Budapest, Bécsi út 104-108. 10. szoba','+36305262422','B1-','C2');
 INSERT INTO suli.Diak
-	VALUES(11,'Kubai Károly','7624 Pécs, Petőfi utca 8.','+36305822452','B2','B1');
+	VALUES(11,'Kubai', 'Károly','7624 Pécs, Petőfi utca 8.','+36305822452','B2','B1');
 INSERT INTO suli.Diak
-	VALUES(12,'Lengyel László','7636 Pécs, Kenderföld utca 11.','+36305364935','B2','B1');
+	VALUES(12,'Lengyel', 'László','7636 Pécs, Kenderföld utca 11.','+36305364935','B2','B1');
 
 INSERT INTO suli.Tanar
-	VALUES(1,'Magyar Melinda','7632 Pécs, Mezőszél utca 6.','+36306249276','HU12345678');
+	VALUES(1,'Magyar', 'Melinda','7632 Pécs, Mezőszél utca 6.','+36306249276','HU12345678');
 INSERT INTO suli.Tanar
-	VALUES(2,'Norvég Nándor','7632 Pécs, Maléter Pál út 40.','+36306678346','23456789-2-22');
+	VALUES(2,'Norvég', 'Nándor','7632 Pécs, Maléter Pál út 40.','+36306678346','23456789-2-22');
 INSERT INTO suli.Tanar
-	VALUES(3,'Orosz Olga','7633 Pécs, Endresz György utca 19.','+36306767965','34567890-2-42');
+	VALUES(3,'Orosz', 'Olga','7633 Pécs, Endresz György utca 19.','+36306767965','34567890-2-42');
 INSERT INTO suli.Tanar
-	VALUES(4,'Portugál Péter','7624 Pécs, Éva utca 15.','+36307678842','PT212345678');
+	VALUES(4,'Portugál', 'Péter','7624 Pécs, Éva utca 15.','+36307678842','PT212345678');
 INSERT INTO suli.Tanar
-	VALUES(5,'Román Réka','7636 Pécs, Polgárszőlő utca 28.','+36307662673','RO87654321');
+	VALUES(5,'Román', 'Réka','7636 Pécs, Polgárszőlő utca 28.','+36307662673','RO87654321');
 INSERT INTO suli.Tanar
-	VALUES(6,'Svéd Sándor','7625 Pécs, István utca 38.','+36307833726','SE123456789101');
+	VALUES(6,'Svéd', 'Sándor','7625 Pécs, István utca 38.','+36307833726','SE123456789101');
 INSERT INTO suli.Tanar
-	VALUES(7,'Török Tamás','7635 Pécs, Körtés köz 8.','+36308676582','8123456789');
+	VALUES(7,'Török', 'Tamás','7635 Pécs, Körtés köz 8.','+36308676582','8123456789');
 INSERT INTO suli.Tanar
-	VALUES(8,'Ukrán Ubul','1034 Budapest, Bécsi út 104-108. 11. szoba','+36308572682','45678901-2-13');
+	VALUES(8,'Ukrán', 'Ubul','1034 Budapest, Bécsi út 104-108. 11. szoba','+36308572682','45678901-2-13');
 INSERT INTO suli.Tanar
-	VALUES(9,'Vietnámi Viktor','1034 Budapest, Bécsi út 104-108. 12. szoba','+36308438626','56789012-2-41');
+	VALUES(9,'Vietnámi', 'Viktor','1034 Budapest, Bécsi út 104-108. 12. szoba','+36308438626','56789012-2-41');
 
 INSERT INTO suli.Ora
 	VALUES(1,TIMESTAMP '2020-10-19 08:00:00 +2:00','A1','Szintfelmérő',1,1);
