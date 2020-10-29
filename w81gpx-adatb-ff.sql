@@ -355,7 +355,15 @@ SELECT Tanar_ID, AVG(Ar)
 	ORDER BY AVG(Ar) DESC;
 
 -- 6/C: Tobbtablas lekerdezesek: INNER JOIN, OUTER JOIN
-
+-- 1: A mar beerkezett penzekbol ki mennyit kap
+SELECT suli.Tanar.VezetekNev||' '||suli.Tanar.UtoNev AS "Nev", SUM(suli.Ora.Ar)
+	FROM suli.Szamla
+	INNER JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
+	INNER JOIN suli.Tanar ON(suli.Ora.Tanar_ID = suli.Tanar.Tanar_ID)
+	WHERE Fizetes_ip IS NOT NULL
+	GROUP BY suli.Ora.Tanar_ID, suli.Tanar.VezetekNev||' '||suli.Tanar.UtoNev
+	ORDER BY SUM(suli.Ora.Ar) DESC;
+-- 2: 
 
 -- 6/D: Fuggvenyek: MIN/MAX/SUM/AVG/COUNT, NVL/SUBSTR/LENGTH/UPPER/LOWER/TO_DATE/TO_CHAR
 
