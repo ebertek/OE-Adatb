@@ -427,5 +427,20 @@ CREATE OR REPLACE VIEW suli.Diak_videk_v AS
 SELECT * FROM suli.Diak_videk_v;
 
 -- 6/G: DDL
+-- 1: Uj oszlop, uj megszoritas
+ALTER TABLE suli.Diak
+	ADD (Karanten	NUMBER(1)	DEFAULT 0	NOT NULL)
+	ADD CONSTRAINT Diak_Karanten_CHK CHECK (REGEXP_LIKE(Karanten,'^[01]$'));
+-- 2: Megszoritas kikapcsolasa
+ALTER TABLE suli.Diak
+	DISABLE CONSTRAINT Diak_Telefonszam_CHK;
+-- 3: Oszlop torlese
+ALTER TABLE suli.Diak
+	DROP COLUMN Telefonszam;
+-- 4: Oszlop atnevezese
+ALTER TABLE suli.Diak
+	RENAME COLUMN Cim TO Lakohely;
+-- 5: Tabla atnevezese
+RENAME suli.Szamla TO suli.Nyugta;
 
 -- 6/H: DML
