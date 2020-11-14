@@ -395,7 +395,14 @@ SELECT suli.Diak.VezetekNev||' '||suli.Diak.UtoNev AS "Tartozo neve", suli.Ora.A
 SELECT suli.Tanar.UtoNev FROM suli.Tanar
 	UNION
 	SELECT suli.Diak.UtoNev FROM suli.Diak;
--- 2: 
+-- 2: A mar kiszamlazott orak azonositoinak kilistazasa
+SELECT suli.Ora.Ora_ID FROM suli.Ora
+	INTERSECT
+	SELECT suli.Szamla.Ora_ID FROM suli.Szamla;
+-- 3: Az orakat nem tarto tanarok kilistazasa
+SELECT suli.Tanar.Tanar_ID FROM suli.Tanar
+	MINUS
+	SELECT suli.Ora.Tanar_ID FROM suli.Ora;
 
 -- 6/F: Nezetek
 
