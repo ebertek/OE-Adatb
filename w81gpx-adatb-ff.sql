@@ -198,9 +198,9 @@ INSERT INTO suli.Ora
 INSERT INTO suli.Ora
 	VALUES(19,TIMESTAMP '2020-10-26 08:00:00 +1:00','A1','Szintfelmérő',1,1);
 INSERT INTO suli.Ora
-	VALUES(20,TIMESTAMP '2020-11-17 18:00:00 +1:00','B1','Alapfokú társalgás',3000,3);
+	VALUES(20,TIMESTAMP '2020-11-17 18:00:00 +1:00','B1','Alapfokú társalgás',3000,8);
 INSERT INTO suli.Ora
-	VALUES(21,TIMESTAMP '2022-11-19 18:00:00 +1:00','B1','Alapfokú társalgás',3000,3);
+	VALUES(21,TIMESTAMP '2022-11-19 18:00:00 +1:00','B1','Alapfokú társalgás',3000,8);
 INSERT INTO suli.Ora
 	VALUES(22,TIMESTAMP '2038-02-12 12:00:00 +1:00','B1','Alapfokú nyelvtan',3000,2);
 INSERT INTO suli.Ora
@@ -483,4 +483,9 @@ DELETE FROM suli.Nyugta
 	WHERE Diak_ID = 11;
 DELETE FROM suli.Diak
 	WHERE Diak_ID = 11;
--- 6:
+-- 6: A budapesti tanarok is mind meghaltak 2020. nov. 14-en, a jovobeli oraik elmaradnak
+DELETE FROM suli.Ora
+	WHERE Tanar_ID IN (SELECT Tanar_ID
+		FROM Tanar
+		WHERE LOWER(Cim) LIKE LOWER('%budapest%'))
+		AND Idopont > TO_TIMESTAMP_TZ('2020-11-14 00:00:00 +1:00', 'YYYY-MM-DD HH24:MI:SS TZH:TZM');
