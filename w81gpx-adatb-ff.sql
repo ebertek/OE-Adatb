@@ -405,7 +405,20 @@ SELECT DISTINCT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev", suli.D
 SELECT *
 	FROM suli.Ora
 	WHERE Ar > (SELECT ROUND(AVG(Ar)) FROM suli.Ora WHERE Szint LIKE 'B%')
-	AND Szint Like 'B%';
+	AND Szint LIKE 'B%'
+	ORDER BY Ora_ID;
+-- 3: Azok a C1/C2 orak, amik dragabbak, mint barmelyik (tehat az osszes) B1/B2 ora
+SELECT *
+	FROM Ora
+	WHERE Ar > ALL (SELECT Ar FROM Ora WHERE Szint LIKE 'B%')
+	AND Szint LIKE 'C%'
+	ORDER BY Ora_ID;
+-- 4: Azok a C1/C2 orak, amik nem dragabbak, mint barmelyik (tehat akar egy is) B1/B2 ora
+SELECT *
+	FROM Ora
+	WHERE Ar <= ANY (SELECT Ar FROM Ora WHERE Szint LIKE 'B%')
+	AND Szint LIKE 'C%'
+	ORDER BY Ora_ID;
 
 -- 6/E: Halmazoperatorok: UNION, INTERSECT, MINUS
 -- 1: Osszes keresztnev kilistazasa
