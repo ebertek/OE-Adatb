@@ -432,16 +432,21 @@ ALTER TABLE suli.Diak
 	MODIFY (Cim	VARCHAR2(80))
 	ADD (Karanten	NUMBER(1)	DEFAULT 0	NOT NULL)
 	ADD CONSTRAINT Diak_Karanten_CHK CHECK (REGEXP_LIKE(Karanten,'^[01]$'));
--- 4: Megszoritas kikapcsolasa
+ALTER TABLE suli.Tanar
+	ADD (Cegnev VARCHAR2(70));
+-- 4: Megszoritas torlese
+ALTER TABLE suli.Tanar
+	DROP CONSTRAINT Tanar_Adoszam_UK;
+-- 5: Megszoritas kikapcsolasa
 ALTER TABLE suli.Diak
 	DISABLE CONSTRAINT Diak_Telefonszam_CHK;
--- 5: Oszlop torlese
+-- 6: Oszlop torlese
 ALTER TABLE suli.Diak
 	DROP COLUMN Telefonszam;
--- 6: Oszlop atnevezese
+-- 7: Oszlop atnevezese
 ALTER TABLE suli.Diak
 	RENAME COLUMN Cim TO Lakohely;
--- 7: Tabla atnevezese
+-- 8: Tabla atnevezese
 RENAME suli.Szamla TO suli.Nyugta;
 
 -- 6/H: DML
