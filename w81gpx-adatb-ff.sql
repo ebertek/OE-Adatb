@@ -38,7 +38,7 @@ CREATE SEQUENCE suli.Diak_SEQ
 CREATE SEQUENCE suli.Tanar_SEQ
 	MINVALUE 1
 	MAXVALUE 1000
-	START WITH 10
+	START WITH 12
 	INCREMENT BY 1
 	CACHE 30;
 
@@ -396,7 +396,7 @@ SELECT DISTINCT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev", suli.D
 		JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
 		JOIN suli.Diak ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
 		WHERE suli.Diak.Diak_ID = 11)
-    ORDER BY "Nev";
+		ORDER BY "Nev";
 
 -- 6/E: Halmazoperatorok: UNION, INTERSECT, MINUS
 -- 1: Osszes keresztnev kilistazasa
