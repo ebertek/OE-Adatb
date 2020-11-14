@@ -389,6 +389,14 @@ SELECT suli.Diak.VezetekNev||' '||suli.Diak.UtoNev AS "Tartozo neve", suli.Ora.A
 	ORDER BY suli.Szamla.Kiallitas_ip ASC;
 
 -- 6/D: Allekerdezesek: IN, ANY, ALL, EXISTS
+-- 1: 6/C/2 alapjan: Kubai Karoly kikkel erintkezett, kiket kell felhivni?
+SELECT DISTINCT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev", suli.Diak.Telefonszam FROM suli.Diak JOIN suli.Szamla ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
+	WHERE suli.Szamla.Ora_ID IN(SELECT suli.Ora.Ora_ID
+		FROM suli.Szamla
+		JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
+		JOIN suli.Diak ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
+		WHERE suli.Diak.Diak_ID = 11)
+    ORDER BY "Nev";
 
 -- 6/E: Halmazoperatorok: UNION, INTERSECT, MINUS
 -- 1: Osszes keresztnev kilistazasa
