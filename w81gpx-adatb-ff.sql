@@ -320,10 +320,10 @@ INSERT INTO suli.Szamla
 	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-11-02 08:00:00 +1:00',NULL,12,19);
 
 -- 5/C: Tablak kilistazasa
-SELECT * FROM suli.Diak;
-SELECT * FROM suli.Tanar;
-SELECT * FROM suli.Ora;
-SELECT * FROM suli.Szamla;
+SELECT * FROM suli.Diak;
+SELECT * FROM suli.Tanar;
+SELECT * FROM suli.Ora;
+SELECT * FROM suli.Szamla;
 
 -- 6/A: Egyszeru lekerdezesek: WHERE, ORDER BY
 -- 1: Kezdo szintu diakok nevei
