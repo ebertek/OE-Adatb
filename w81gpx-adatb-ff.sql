@@ -489,7 +489,7 @@ SELECT Tanar.VezetekNev||' '||Tanar.UtoNev AS "Nev", Cegnev, Adoszam FROM suli.T
 -- 3: Diakok megjelolese, akik csak az ingyenes orakon vettek reszt
 UPDATE suli.Diak
 	SET Ingyenelo = 1
-	WHERE suli.Diak.Diak_ID NOT IN (SELECT suli.Nyugta.Diak_ID
+	WHERE suli.Diak.Diak_ID IN (SELECT suli.Nyugta.Diak_ID
 		FROM suli.Nyugta
 		JOIN suli.Ora ON(suli.Nyugta.Ora_ID = suli.Ora.Ora_ID)
 		GROUP BY suli.Nyugta.Diak_ID
