@@ -382,7 +382,7 @@ SELECT suli.Tanar.VezetekNev||' '||suli.Tanar.UtoNev AS "Tanar neve", suli.Ora.O
 	JOIN suli.Tanar ON(suli.Ora.Tanar_ID = suli.Tanar.Tanar_ID)
 	JOIN suli.Diak ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
 	WHERE suli.Diak.Diak_ID = 11;
--- 3: A 2002. okt. 27. elott kiallitott, de nem kifizetett szamlakhoz tartozo nevek es osszegek
+-- 3: A 2020. okt. 27. elott kiallitott, de nem kifizetett szamlakhoz tartozo nevek es osszegek
 SELECT suli.Diak.VezetekNev||' '||suli.Diak.UtoNev AS "Tartozo neve", suli.Ora.Ar
 	FROM suli.Szamla
 	JOIN suli.Ora ON(suli.Szamla.Ora_ID = suli.Ora.Ora_ID)
