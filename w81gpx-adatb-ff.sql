@@ -414,13 +414,13 @@ SELECT suli.Tanar.Tanar_ID FROM suli.Tanar
 
 -- 6/F: Nezetek
 -- 1: Jovobeli orak listaja
-CREATE OR REPLACE VIEW Ora_v AS
-	SELECT Ora.Idopont, Tanar.VezetekNev || ' ' || Tanar.UtoNev AS "Nev", Ora.Tematika FROM Ora JOIN Tanar ON(Ora.Tanar_ID = Tanar.Tanar_ID) WHERE Ora.Idopont > CURRENT_TIMESTAMP;
-SELECT * FROM Ora_v;
+CREATE OR REPLACE VIEW suli.Ora_v AS
+	SELECT suli.Ora.Idopont, suli.Tanar.VezetekNev || ' ' || suli.Tanar.UtoNev AS "Nev", suli.Ora.Tematika FROM suli.Ora JOIN suli.Tanar ON(suli.Ora.Tanar_ID = suli.Tanar.Tanar_ID) WHERE suli.Ora.Idopont > CURRENT_TIMESTAMP;
+SELECT * FROM suli.Ora_v;
 -- 2: Diakok, akik meg nem fejlodtek
-CREATE OR REPLACE VIEW Diak_v AS
-	SELECT Diak.VezetekNev || ' ' || Diak.UtoNev AS "Nev" FROM Diak WHERE Diak.Szintfelmero = Diak.Jelenlegi_szint;
-SELECT * FROM Diak_v;
+CREATE OR REPLACE VIEW suli.Diak_v AS
+	SELECT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev" FROM suli.Diak WHERE suli.Diak.Szintfelmero = suli.Diak.Jelenlegi_szint;
+SELECT * FROM suli.Diak_v;
 
 -- 6/G: DDL
 
