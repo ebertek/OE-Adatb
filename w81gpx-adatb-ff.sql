@@ -380,8 +380,17 @@ SELECT suli.Diak.VezetekNev||' '||suli.Diak.UtoNev AS "Tartozo neve", suli.Ora.A
 	AND suli.szamla.Kiallitas_ip < TO_TIMESTAMP_TZ('2020-10-27 00:00:00 +1:00', 'YYYY-MM-DD HH24:MI:SS TZH:TZM')
 	ORDER BY suli.Szamla.Kiallitas_ip ASC;
 
---- 6/D: Allekerdezesek: IN, ANY, ALL, EXISTS
---- 6/E: Halmazoperatorok: UNION, INTERSECT, MINUS
---- 6/F: Nezetek
---- 6/G: DDL
---- 6/H: DML
+-- 6/D: Allekerdezesek: IN, ANY, ALL, EXISTS
+
+-- 6/E: Halmazoperatorok: UNION, INTERSECT, MINUS
+-- 1: Osszes keresztnev kilistazasa
+SELECT suli.Tanar.UtoNev FROM suli.Tanar
+	UNION
+	SELECT suli.Diak.UtoNev FROM suli.Diak;
+-- 2: 
+
+-- 6/F: Nezetek
+
+-- 6/G: DDL
+
+-- 6/H: DML
