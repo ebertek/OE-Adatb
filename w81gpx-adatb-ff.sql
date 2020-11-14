@@ -436,17 +436,17 @@ SELECT suli.Tanar.Tanar_ID FROM suli.Tanar
 
 -- 6/F: Nezetek
 -- 1: Jovobeli orak
-CREATE OR REPLACE VIEW suli.Ora_v AS
+CREATE OR REPLACE VIEW suli.Ora_V AS
 	SELECT suli.Ora.Idopont, suli.Tanar.VezetekNev || ' ' || suli.Tanar.UtoNev AS "Nev", suli.Ora.Tematika FROM suli.Ora JOIN suli.Tanar ON(suli.Ora.Tanar_ID = suli.Tanar.Tanar_ID) WHERE suli.Ora.Idopont > CURRENT_TIMESTAMP;
-SELECT * FROM suli.Ora_v;
+SELECT * FROM suli.Ora_V;
 -- 2: Diakok, akik meg nem fejlodtek
-CREATE OR REPLACE VIEW suli.Diak_sni_v AS
+CREATE OR REPLACE VIEW suli.Diak_sni_V AS
 	SELECT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev" FROM suli.Diak WHERE suli.Diak.Szintfelmero = suli.Diak.Jelenlegi_szint;
-SELECT * FROM suli.Diak_sni_v;
+SELECT * FROM suli.Diak_sni_V;
 -- 3: Videki diakok
-CREATE OR REPLACE VIEW suli.Diak_videk_v AS
+CREATE OR REPLACE VIEW suli.Diak_videk_V AS
 	SELECT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev" FROM suli.Diak WHERE LOWER(suli.Diak.Cim) NOT LIKE LOWER('%budapest%');
-SELECT * FROM suli.Diak_videk_v;
+SELECT * FROM suli.Diak_videk_V;
 
 -- 6/G: DDL
 -- 1, 2, 3: Oszlop modositasa, uj oszlop beszurasa, uj megszoritas letrehozasa
