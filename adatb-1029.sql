@@ -28,8 +28,8 @@ delete from oehr_departments2
 
 -- nezetek: gyakorlatilag egy lekerdezest tudunk elmenteni
 create view oehr_departments2_v as
-	select * from oehr_departments2;
-select * from oehr_departments2_v
+	select * from oehr_departments2;
+select * from oehr_departments2_v
 	where department_id = 55; -- ugyanugy lehet szurni, mintha tabla lenne; mindig az aktualis adatokat adja vissza
 -- show create view oehr_departments2_v;
 

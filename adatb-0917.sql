@@ -12,11 +12,11 @@ SELECT employee_id AS azonosito, first_name||' '||last_name "Nev" FROM hr.employ
 
 SELECT employees.*, 1+2 from hr.employees;
 
-SELECT salary + (commission_pct * salary) AS "ossz. fizu", commision_pct FROM hr.employees;
+SELECT salary + (commission_pct * salary) AS "ossz. fizu", commision_pct FROM hr.employees;
 -- (null)-t jo lenne itt 0-ra cserelni:
-SELECT salary + (NVL(commission_pct,0) * salary) AS "ossz. fizu", commision_pct FROM hr.employees;
+SELECT salary + (NVL(commission_pct,0) * salary) AS "ossz. fizu", commision_pct FROM hr.employees;
 
-SELECT * FROM hr.employees
+SELECT * FROM hr.employees
 WHERE salary BETWEEN 8000 AND 15000;
 
 -- WHERE utan nem lehet az aliast nevet hasznalni, ujra ki kell irni az egeszet
