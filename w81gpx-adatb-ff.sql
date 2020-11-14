@@ -198,9 +198,9 @@ INSERT INTO suli.Ora
 INSERT INTO suli.Ora
 	VALUES(19,TIMESTAMP '2020-10-26 08:00:00 +1:00','A1','Szintfelmérő',1,1);
 INSERT INTO suli.Ora
-	VALUES(20,TIMESTAMP '2020-11-13 11:13:00 +1:00','B1','Alapfokú nyelvtan',3000,2);
+	VALUES(20,TIMESTAMP '2038-02-12 12:00:00 +1:00','B1','Alapfokú nyelvtan',3000,2);
 INSERT INTO suli.Ora
-	VALUES(21,TIMESTAMP '2020-11-13 13:11:00 +1:00','B2','Középfokú nyelvtan',3500,2);
+	VALUES(21,TIMESTAMP '2038-02-12 14:00:00 +1:00','B2','Középfokú nyelvtan',3500,2);
 
 INSERT INTO suli.Szamla
 	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-10-26 08:00:00 +1:00',NULL,1,1);
@@ -413,6 +413,10 @@ SELECT suli.Tanar.Tanar_ID FROM suli.Tanar
 	SELECT suli.Ora.Tanar_ID FROM suli.Ora;
 
 -- 6/F: Nezetek
+-- 1: Jovobeli orak listaja
+CREATE OR REPLACE VIEW Ora_v AS
+	SELECT Ora.Idopont, Tanar.VezetekNev || ' ' || Tanar.UtoNev AS "Nev", Ora.Tematika FROM Ora JOIN Tanar ON(Ora.Tanar_ID = Tanar.Tanar_ID) WHERE Ora.Idopont > CURRENT_TIMESTAMP;
+SELECT * FROM Ora_v;
 
 -- 6/G: DDL
 
