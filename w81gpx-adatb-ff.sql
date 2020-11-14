@@ -409,14 +409,14 @@ SELECT *
 	ORDER BY Ora_ID;
 -- 3: Azok a C1/C2 orak, amik dragabbak, mint barmelyik (tehat az osszes) B1/B2 ora
 SELECT *
-	FROM Ora
-	WHERE Ar > ALL (SELECT Ar FROM Ora WHERE Szint LIKE 'B%')
+	FROM suli.Ora
+	WHERE Ar > ALL (SELECT Ar FROM suli.Ora WHERE Szint LIKE 'B%')
 	AND Szint LIKE 'C%'
 	ORDER BY Ora_ID;
 -- 4: Azok a C1/C2 orak, amik nem dragabbak, mint barmelyik (tehat akar egy is) B1/B2 ora
 SELECT *
-	FROM Ora
-	WHERE Ar <= ANY (SELECT Ar FROM Ora WHERE Szint LIKE 'B%')
+	FROM suli.Ora
+	WHERE Ar <= ANY (SELECT Ar FROM suli.Ora WHERE Szint LIKE 'B%')
 	AND Szint LIKE 'C%'
 	ORDER BY Ora_ID;
 
@@ -504,6 +504,6 @@ DELETE FROM suli.Diak
 -- 6: A budapesti tanarok is mind meghaltak 2020. nov. 14-en, a jovobeli oraik elmaradnak
 DELETE FROM suli.Ora
 	WHERE Tanar_ID IN (SELECT Tanar_ID
-		FROM Tanar
+		FROM suli.Tanar
 		WHERE LOWER(Cim) LIKE LOWER('%budapest%'))
 		AND Idopont > TO_TIMESTAMP_TZ('2020-11-14 00:00:00 +1:00', 'YYYY-MM-DD HH24:MI:SS TZH:TZM');
