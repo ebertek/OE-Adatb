@@ -154,6 +154,10 @@ INSERT INTO suli.Tanar
 	VALUES(8,'Ukrán', 'Ubul','1034 Budapest, Bécsi út 104-108. 11. szoba','+36308572682','45678901-2-13');
 INSERT INTO suli.Tanar
 	VALUES(9,'Vietnámi', 'Viktor','1034 Budapest, Bécsi út 104-108. 12. szoba','+36308438626','56789012-2-41');
+INSERT INTO suli.Tanar
+	VALUES(10,'Wakandai', 'Walter','1034 Budapest, Bécsi út 104-108. 13. szoba','+36309252632','67890123-2-41');
+INSERT INTO suli.Tanar
+	VALUES(11,'Zimbabwei', 'Zoltán','1034 Budapest, Bécsi út 104-108. 14. szoba','+36309462229','8234567890');
 
 INSERT INTO suli.Ora
 	VALUES(1,TIMESTAMP '2020-10-19 08:00:00 +2:00','A1','Szintfelmérő',1,1);
@@ -193,6 +197,10 @@ INSERT INTO suli.Ora
 	VALUES(18,TIMESTAMP '2020-10-20 16:00:00 +2:00','B1','Alapfokú nyelvvizsga-felkészítő',3000,9);
 INSERT INTO suli.Ora
 	VALUES(19,TIMESTAMP '2020-10-26 08:00:00 +1:00','A1','Szintfelmérő',1,1);
+INSERT INTO suli.Ora
+	VALUES(20,TIMESTAMP '2020-11-13 11:13:00 +1:00','B1','Alapfokú nyelvtan',3000,2);
+INSERT INTO suli.Ora
+	VALUES(21,TIMESTAMP '2020-11-13 13:11:00 +1:00','B2','Középfokú nyelvtan',3500,2);
 
 INSERT INTO suli.Szamla
 	VALUES(suli.Szamla_SEQ.NEXTVAL,TIMESTAMP '2020-10-26 08:00:00 +1:00',NULL,1,1);
