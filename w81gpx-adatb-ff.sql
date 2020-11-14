@@ -428,7 +428,8 @@ SELECT suli.Tanar.UtoNev FROM suli.Tanar
 -- 2: A mar kiszamlazott orak azonositoinak kilistazasa
 SELECT suli.Ora.Ora_ID FROM suli.Ora
 	INTERSECT
-	SELECT suli.Szamla.Ora_ID FROM suli.Szamla;
+	SELECT suli.Szamla.Ora_ID FROM suli.Szamla
+	ORDER BY Ora_ID DESC;
 -- 3: Az orakat nem tarto tanarok kilistazasa
 SELECT suli.Tanar.Tanar_ID FROM suli.Tanar
 	MINUS
