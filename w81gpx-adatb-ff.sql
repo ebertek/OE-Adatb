@@ -134,7 +134,7 @@ INSERT INTO suli.Diak
 INSERT INTO suli.Diak
 	VALUES(11,'Kubai', 'Károly','7624 Pécs, Petőfi utca 8.','+36305822452','B2','B1');
 INSERT INTO suli.Diak
-	VALUES(12,'Lengyel', 'László','7636 Pécs, Kenderföld utca 11.','+36305364935','B2','B1');
+	VALUES(12,'Lengyel', 'László','7636 Pécs, Kenderföld utca 11.','+36305364935','B2','B2');
 
 INSERT INTO suli.Tanar
 	VALUES(1,'Magyar', 'Melinda','7632 Pécs, Mezőszél utca 6.','+36306249276','HU12345678');
@@ -417,6 +417,10 @@ SELECT suli.Tanar.Tanar_ID FROM suli.Tanar
 CREATE OR REPLACE VIEW Ora_v AS
 	SELECT Ora.Idopont, Tanar.VezetekNev || ' ' || Tanar.UtoNev AS "Nev", Ora.Tematika FROM Ora JOIN Tanar ON(Ora.Tanar_ID = Tanar.Tanar_ID) WHERE Ora.Idopont > CURRENT_TIMESTAMP;
 SELECT * FROM Ora_v;
+-- 2: Diakok, akik meg nem fejlodtek
+CREATE OR REPLACE VIEW Diak_v AS
+	SELECT Diak.VezetekNev || ' ' || Diak.UtoNev AS "Nev" FROM Diak WHERE Diak.Szintfelmero = Diak.Jelenlegi_szint;
+SELECT * FROM Diak_v;
 
 -- 6/G: DDL
 
