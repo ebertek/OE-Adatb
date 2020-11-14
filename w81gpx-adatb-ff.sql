@@ -401,6 +401,11 @@ SELECT DISTINCT suli.Diak.VezetekNev || ' ' || suli.Diak.UtoNev AS "Nev", suli.D
 		JOIN suli.Diak ON(suli.Szamla.Diak_ID = suli.Diak.Diak_ID)
 		WHERE suli.Diak.Diak_ID = 11)
 		ORDER BY "Nev";
+-- 2: B1/B2 orak, amik a B1/B2 orak atlagaranal (3179 Ft) dragabbak
+SELECT *
+	FROM suli.Ora
+	WHERE Ar > (SELECT ROUND(AVG(Ar)) FROM suli.Ora WHERE Szint LIKE 'B%')
+	AND Szint Like 'B%';
 
 -- 6/E: Halmazoperatorok: UNION, INTERSECT, MINUS
 -- 1: Osszes keresztnev kilistazasa
