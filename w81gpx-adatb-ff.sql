@@ -471,7 +471,8 @@ ALTER TABLE suli.Diak
 ALTER TABLE suli.Diak
 	RENAME COLUMN Cim TO Lakohely;
 -- 8: Tabla atnevezese
-RENAME suli.Szamla TO suli.Nyugta;
+-- RENAME Szamla TO Nyugta; jo lenne, ha a suli seman belul lennenk
+ALTER TABLE suli.Szamla RENAME TO Nyugta;
 
 -- 6/H: DML
 -- 1: Ket diak karantenba kerult
