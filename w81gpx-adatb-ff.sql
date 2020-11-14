@@ -431,7 +431,9 @@ SELECT * FROM suli.Diak_videk_v;
 ALTER TABLE suli.Diak
 	MODIFY (Cim	VARCHAR2(80))
 	ADD (Karanten	NUMBER(1)	DEFAULT 0	NOT NULL)
-	ADD CONSTRAINT Diak_Karanten_CHK CHECK (REGEXP_LIKE(Karanten,'^[01]$'));
+	ADD CONSTRAINT Diak_Karanten_CHK CHECK (REGEXP_LIKE(Karanten,'^[01]$'))
+	ADD (Ingyenelo	NUMBER(1)	DEFAULT 0	NOT NULL)
+	ADD CONSTRAINT Diak_Ingyenelo_CHK CHECK (REGEXP_LIKE(Ingyenelo,'^[01]$'));
 ALTER TABLE suli.Tanar
 	ADD (Cegnev VARCHAR2(70));
 -- 4: Megszoritas torlese
@@ -450,3 +452,31 @@ ALTER TABLE suli.Diak
 RENAME suli.Szamla TO suli.Nyugta;
 
 -- 6/H: DML
+-- 1: Ket diak karantenba kerult
+UPDATE suli.Diak
+	SET Karanten = 1
+	WHERE Diak_ID = 11 OR Diak_ID = 12;
+SELECT Diak_ID, Karanten FROM suli.Diak;
+-- 2: A pecsi tanarok e.v. helyett ezentul cegkent szamlaznak
+UPDATE suli.Tanar
+	SET Cegnev = 'Pécsi Nyelvsuli Kft.', Adoszam = '22334455-2-02'
+	WHERE LOWER(Cim) LIKE LOWER('%pécs%');
+SELECT Tanar.VezetekNev||' '||Tanar.UtoNev AS "Nev", Cegnev, Adoszam FROM suli.Tanar;
+-- 3: Diakok megjelolese, akik csak az ingyenes orakon vettek reszt
+UPDATE suli.Diak
+	SET Ingyenelo = 1
+	WHERE suli.Diak.Diak_ID NOT IN (SELECT suli.Nyugta.Diak_ID
+		FROM suli.Nyugta
+		JOIN suli.Ora ON(suli.Nyugta.Ora_ID = suli.Ora.Ora_ID)
+		GROUP BY suli.Nyugta.Diak_ID
+		HAVING Max(suli.Ora.Ar)='1');
+SELECT Diak_ID, Ingyenelo from suli.Diak;
+-- 4: A mar beerkezett fizetesek torlese az adatbazisbol, meg ne lassa a NAV
+DELETE FROM suli.Nyugta
+	WHERE Fizetes_ip IS NOT NULL;
+-- 5: Kubai Karoly sajnos meghalt, toroljunk ki rola mindent
+DELETE FROM suli.Nyugta
+	WHERE Diak_ID = 11;
+DELETE FROM suli.Diak
+	WHERE Diak_ID = 11;
+-- 6:
