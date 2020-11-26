@@ -329,7 +329,7 @@ SELECT * FROM suli.Tanar;
 SELECT * FROM suli.Ora;
 SELECT * FROM suli.Szamla;
 
--- 6/A: Egyszeru lekerdezesek: WHERE, ORDER BY
+-- 6/A: DQL, egyszeru lekerdezesek: WHERE, ORDER BY
 -- 1: Kezdo szintu diakok nevei
 SELECT VezetekNev||' '||UtoNev AS "Nev"
 	FROM suli.Diak
