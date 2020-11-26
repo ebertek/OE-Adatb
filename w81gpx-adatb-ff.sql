@@ -496,8 +496,15 @@ UPDATE suli.Diak
 		HAVING Max(suli.Ora.Ar)='1');
 SELECT Diak_ID, Ingyenelo from suli.Diak;
 -- 4: A mar beerkezett fizetesek torlese az adatbazisbol, meg ne lassa a NAV
+-- 6/I: TCL (tranzakciokezeles)
+SAVEPOINT nav;
+-- Ez direkt rossz:
+DELETE FROM suli.Nyugta
+	WHERE Fizetes_ip IS NULL;
+ROLLBACK TO nav;
 DELETE FROM suli.Nyugta
 	WHERE Fizetes_ip IS NOT NULL;
+COMMIT;
 -- 5: Kubai Karoly sajnos meghalt, toroljunk ki rola mindent
 DELETE FROM suli.Nyugta
 	WHERE Diak_ID = 11;
