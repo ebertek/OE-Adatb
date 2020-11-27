@@ -516,3 +516,26 @@ DELETE FROM suli.Ora
 		FROM suli.Tanar
 		WHERE LOWER(Cim) LIKE LOWER('%budapest%'))
 		AND Idopont > TO_TIMESTAMP_TZ('2020-11-14 00:00:00 +1:00', 'YYYY-MM-DD HH24:MI:SS TZH:TZM');
+
+-- 6/J: DCL: GRANT, REVOKE
+-- 1: 2 szerepkor, benne 1-1 felhasznalo, 1-1 jogosultsaggal
+CREATE ROLE hresek;
+GRANT SELECT, INSERT, UPDATE, DELETE
+	ON suli.Tanar
+	TO hresek;
+CREATE ROLE auditorok;
+GRANT SELECT
+	ON suli.Nyugta
+	TO auditorok;
+CREATE USER Helga IDENTIFIED BY kiruglak;
+GRANT CREATE SESSION TO Helga;
+GRANT hresek TO Helga;
+CREATE USER Agnes IDENTIFIED BY bezarlak;
+GRANT CREATE SESSION TO Agnes;
+GRANT auditorok TO Agnes;
+SELECT * FROM session_roles;
+-- 2: Jogosultsagok hatasanak demonstralasa
+SET ROLE hresek;
+SELECT * FROM session_roles;
+SET ROLE auditorok;
+SET ROLE ALL;
