@@ -561,7 +561,7 @@ CONNECT Suli/jelszo;
 SET SERVEROUTPUT ON;
 -- 1: PL/SQL: Egesz eves tanfolyam beszurasa
 DECLARE
-	l_tol	NUMBER := 0; -- 561. sorban levo i*7 miatt indulunk 0-rol
+	l_tol	NUMBER := 0; -- 578. sorban levo i*7 miatt indulunk 0-rol
 	l_ig	NUMBER := 51;
 --	i_ora_id	suli.Ora.Ora_ID%type := 24; -- CURRVAL-t nem tudunk meg hasznalni, mert nem volt NEXTVAL erre a sequence-re hasznalva eddig
 --	i_idopont	suli.Ora.Idopont%type := '2021-01-04 14:00:00 +1:00';
