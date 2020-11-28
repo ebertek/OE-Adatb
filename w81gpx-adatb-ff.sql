@@ -581,6 +581,8 @@ BEGIN
 			);
 	END LOOP;
 END;
+/ -- PL/SQL blokk lezarasa, hogy tudjuk folytatni sima SQL lekerdezesekkel
+SELECT * FROM suli.Ora WHERE Ora_ID > 23;
 -- 2: Tablaszintu trigger, szol, ha az Ora tablaban valtozas tortenik
 CREATE OR REPLACE TRIGGER Ora_BDIU_TRG
 	BEFORE DELETE OR INSERT OR UPDATE ON suli.Ora
