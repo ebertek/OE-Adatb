@@ -555,6 +555,7 @@ SELECT Kiallitas_ip FROM suli.Nyugta WHERE Ora_ID = 1 AND Diak_ID = 1; -- lefut
 UPDATE suli.Nyugta
 	SET Ora_ID = 1; -- ORA-01031: insufficient privileges
 DISCONNECT;
+CONNECT Suli/jelszo;
 
 -- 6/K: PL/SQL, 1 tablaszintu, 2 sorszintu trigger
 SET SERVEROUTPUT ON;
@@ -582,7 +583,8 @@ BEGIN
 			);
 	END LOOP;
 END;
-/ -- PL/SQL blokk lezarasa, hogy tudjuk folytatni sima SQL lekerdezesekkel
+-- PL/SQL blokk lezarasa, hogy tudjuk folytatni sima SQL lekerdezesekkel:
+/
 SELECT * FROM suli.Ora WHERE Ora_ID > 23;
 -- 2: Tablaszintu trigger, szol, ha az Ora tablaban valtozas tortenik
 CREATE OR REPLACE TRIGGER Ora_BDIU_TRG
@@ -598,6 +600,7 @@ CREATE OR REPLACE TRIGGER Ora_BDIU_TRG
 			dbms_output.put_line('Torles tortent az Ora tablabol');
 		END IF;
 	END;
+/
 UPDATE suli.Ora SET Ar = Ar * 1.2;
 ALTER TRIGGER Ora_BDIU_TRG DISABLE;
 -- 3: Sorszintu trigger, kiirja, hogy mi lett az uj Ar
