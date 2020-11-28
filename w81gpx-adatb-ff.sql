@@ -613,11 +613,12 @@ CREATE OR REPLACE TRIGGER Ora_BDIUR_TRG
 			dbms_output.put_line('Torles tortent az Ora tablabol');
 		END IF;
 	END;
+/
 UPDATE suli.Ora SET Ar = Ar * 1.2;
 ALTER TRIGGER Ora_BDIUR_TRG DISABLE;
 -- 4: Sorszintu trigger, csak felteteles esetben tuzel (ha tul magas lesz egy Ar)
 CREATE OR REPLACE TRIGGER Ora_BDIURW_TRG
-	BEFORE DELETE OR INSERT OR UPDATE ON suli.Ora FOR EACH ROW WHEN (new.Ar > 5000)
+	BEFORE DELETE OR INSERT OR UPDATE ON suli.Ora FOR EACH ROW WHEN (new.Ar > 6000)
 	BEGIN
 		IF inserting THEN
 			dbms_output.put_line('Beszuras tortent az Ora tablaba');
@@ -629,5 +630,6 @@ CREATE OR REPLACE TRIGGER Ora_BDIURW_TRG
 			dbms_output.put_line('Torles tortent az Ora tablabol');
 		END IF;
 	END;
+/
 UPDATE suli.Ora SET Ar = Ar * 1.12;
 ALTER TRIGGER Ora_BDIURW_TRG DISABLE;
