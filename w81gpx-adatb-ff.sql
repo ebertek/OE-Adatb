@@ -550,7 +550,7 @@ SELECT * FROM session_roles;
 SET ROLE auditorok;
 SET ROLE ALL;
 
--- 6/K: PL/SQL, 2 sorszintu, 1 tablaszintu trigger
+-- 6/K: PL/SQL, 1 tablaszintu, 2 sorszintu trigger
 SET SERVEROUTPUT ON;
 -- 1: PL/SQL: Egesz eves tanfolyam beszurasa
 DECLARE
@@ -582,13 +582,13 @@ CREATE OR REPLACE TRIGGER Ora_BDIU_TRG
 	BEGIN
 		IF inserting THEN
 			dbms_output.put_line('Beszuras tortent az Ora tablaba');
-		END_IF;
+		END IF;
 		IF updating THEN
 			dbms_output.put_line('Modositas tortent az Ora tablaban');
-		END_IF;
+		END IF;
 		IF deleting THEN
 			dbms_output.put_line('Torles tortent az Ora tablabol');
-		END_IF;
+		END IF;
 	END;
 UPDATE suli.Ora SET Ar = Ar * 1.2;
 ALTER TRIGGER Ora_BDIU_TRG DISABLE;
@@ -598,30 +598,29 @@ CREATE OR REPLACE TRIGGER Ora_BDIUR_TRG
 	BEGIN
 		IF inserting THEN
 			dbms_output.put_line('Beszuras tortent az Ora tablaba');
-		END_IF;
+		END IF;
 		IF updating THEN
 			dbms_output.put_line('Modositas tortent az Ora tablaban: ' || :old.Ar || ' -> ' || :new.Ar);
-		END_IF;
+		END IF;
 		IF deleting THEN
 			dbms_output.put_line('Torles tortent az Ora tablabol');
-		END_IF;
+		END IF;
 	END;
 UPDATE suli.Ora SET Ar = Ar * 1.2;
 ALTER TRIGGER Ora_BDIUR_TRG DISABLE;
-
 -- 4: Sorszintu trigger, csak felteteles esetben tuzel (ha tul magas lesz egy Ar)
 CREATE OR REPLACE TRIGGER Ora_BDIURW_TRG
 	BEFORE DELETE OR INSERT OR UPDATE ON suli.Ora FOR EACH ROW WHEN (new.Ar > 5000)
 	BEGIN
 		IF inserting THEN
 			dbms_output.put_line('Beszuras tortent az Ora tablaba');
-		END_IF;
+		END IF;
 		IF updating THEN
 			dbms_output.put_line('Modositas tortent az Ora tablaban, tul magas Ar: ' || :old.Ar || ' -> ' || :new.Ar);
-		END_IF;
+		END IF;
 		IF deleting THEN
 			dbms_output.put_line('Torles tortent az Ora tablabol');
-		END_IF;
+		END IF;
 	END;
 UPDATE suli.Ora SET Ar = Ar * 1.12;
 ALTER TRIGGER Ora_BDIURW_TRG DISABLE;
