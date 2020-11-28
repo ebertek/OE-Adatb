@@ -1,3 +1,4 @@
+-- CONNECT SYS AS SYSDBA
 -- sema letrehozasa
 DROP USER suli CASCADE;
 DROP TABLESPACE suli_tbs
