@@ -545,10 +545,15 @@ GRANT CREATE SESSION TO Agnes;
 GRANT auditorok TO Agnes;
 SELECT * FROM session_roles;
 -- 2: Jogosultsagok hatasanak demonstralasa
-SET ROLE hresek;
-SELECT * FROM session_roles;
-SET ROLE auditorok;
-SET ROLE ALL;
+CONNECT Helga/kiruglak;
+SELECT Adoszam FROM suli.Tanar WHERE Tanar_ID = 1; -- lefut
+SELECT * FROM suli.Nyugta; -- ORA-00942: table or view does not exist
+DISCONNECT;
+CONNECT Agnes/bezarlak;
+SELECT Kiallitas_ip FROM suli.Nyugta WHERE Ora_ID = 1 AND Diak_ID = 1; -- lefut
+UPDATE suli.Nyugta
+	SET Ora_ID = 1; -- ORA-01031: insufficient privileges
+DISCONNECT;
 
 -- 6/K: PL/SQL, 1 tablaszintu, 2 sorszintu trigger
 SET SERVEROUTPUT ON;
